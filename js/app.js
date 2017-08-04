@@ -3,6 +3,7 @@ var Word, ctx, curr, draw, isMenuDisplayed, mouseClicked, setup, stopHere, toggl
 isMenuDisplayed = false;
 
 stopHere = function(event) {
+  event.preventDefault();
   if (event.stopPropagation) {
     event.stopPropagation();
   } else {
@@ -44,7 +45,7 @@ Word = (function() {
     this.y = y;
     this.animateStartIndex = 0;
     this.animateSpeed = 1;
-    this.width = this.ctx.measureText(this.text).width * 1.2 / displayDensity();
+    this.width = this.ctx.measureText(this.text).width * 1.2;
     this.displayText = this.text;
     this.colorStop = 1;
     this.state = 0;
