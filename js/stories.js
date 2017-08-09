@@ -1,4 +1,4 @@
-var Word, ctx, curr, draw, menuHeight, mouseClicked, setup, windowResized, words;
+var Word, ctx, curr, draw, menuHeight, mousePressed, setup, windowResized, words;
 
 ctx = null;
 
@@ -147,7 +147,7 @@ windowResized = function() {
   return resizeCanvas(windowWidth, windowHeight);
 };
 
-mouseClicked = function() {
+mousePressed = function() {
   if (curr !== null) {
     return window.location = curr.link;
   }
