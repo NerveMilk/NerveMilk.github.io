@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://NerveMilk.github.io/post/2017/08/05/%E7%BB%93%E7%9F%B3/</loc>
+    <lastmod>2017-08-05T16:10:01-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://NerveMilk.github.io/post/2017/07/01/%E8%A3%81%E7%BC%9D/</loc>
     <lastmod>2017-07-01T16:10:01-04:00</lastmod>
   </url>
@@ -68,22 +73,23 @@
   </url>
   
   <url>
-    <loc>https://NerveMilk.github.io/contact/</loc>
+    <loc>https://NerveMilk.github.io/</loc>
   </url>
   
   <url>
     <loc>https://NerveMilk.github.io/</loc>
-    <lastmod>2017-07-01T16:10:01-04:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://NerveMilk.github.io/post/</loc>
-    <lastmod>2017-07-01T16:10:01-04:00</lastmod>
+    <lastmod>2017-08-05T16:10:01-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://NerveMilk.github.io/shop/</loc>
+    <loc>https://NerveMilk.github.io/post/</loc>
+    <lastmod>2017-08-05T16:10:01-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://NerveMilk.github.io/stories/</loc>
   </url>
   
   <url>
@@ -93,10 +99,6 @@
   
   <url>
     <loc>https://NerveMilk.github.io/wtf/</loc>
-  </url>
-  
-  <url>
-    <loc>https://NerveMilk.github.io/projects/</loc>
   </url>
   
 </urlset>
