@@ -12,7 +12,7 @@ menuHeight = 40;
 
 Word = (function() {
   function Word(ctx1, id, text1, link1, path1, width, x, y) {
-    var cmd, i, letterCount;
+    var cmd, j, len, ref;
     this.ctx = ctx1;
     this.id = id;
     this.text = text1;
@@ -23,29 +23,17 @@ Word = (function() {
     this.y = y;
     this.animateStartIndex = 0;
     this.animateSpeed = 1;
-    this.displayText = this.path.length;
     this.colorStop = 1;
     this.state = 0;
-    letterCount = 0;
-    while (i < this.path.length) {
-      if (letterCount === this.displayText) {
-        i = pdata.length;
-        break;
-      }
-      cmd = pdata[i];
-      if (cmd.type === 'M') {
-        this.ctx.moveTo(cmd.x + this.x, cmd.y + this.y);
-      } else if (cmd.type === 'L') {
-        this.ctx.lineTo(cmd.x + this.x, cmd.y + this.y);
-      } else if (cmd.type === 'C') {
-        this.ctx.bezierCurveTo(cmd.x1 + this.x, cmd.y1 + this.y, cmd.x2 + this.x, cmd.y2 + this.y, cmd.x + this.x, cmd.y + this.y);
-      } else if (cmd.type === 'Q') {
-        this.ctx.quadraticCurveTo(cmd.x1 + this.x, cmd.y1 + this.y, cmd.x + this.x, cmd.y + this.y);
-      } else if (cmd.type === 'Z') {
-        this.ctx.closePath();
-        letterCount++;
+    this.shapeCount = 0;
+    ref = this.path;
+    for (j = 0, len = ref.length; j < len; j++) {
+      cmd = ref[j];
+      if (cmd.type === 'Z') {
+        this.shapeCount++;
       }
     }
+    this.displayText = this.shapeCount;
   }
 
   Word.prototype.update = function() {
@@ -72,20 +60,20 @@ Word = (function() {
     if (this.state === -1) {
       return this.displayText = 0;
     } else if (this.state === 0) {
-      return this.displayText = this.path.commands.length;
+      return this.displayText = this.shapeCount;
     } else if (this.state === 1) {
       this.colorStop = max(min((mouseX - curr.x) / curr.width, 1), 0);
-      return this.displayText = this.path.commands.length;
+      return this.displayText = this.shapeCount;
     } else if (this.state === 2) {
-      if (this.animateStartIndex < this.text.length) {
+      if (this.animateStartIndex < this.shapeCount) {
         this.animateStartIndex += this.animateSpeed;
-        return this.displayText = min(this.animateStartIndex, this.path.commands.length);
+        return this.displayText = min(int(this.animateStartIndex), this.shapeCount);
       } else {
         return this.state = 0;
       }
     } else if (this.state === 3) {
       this.colorStop = cos(this.animateStartIndex * 0.11 * this.animateSpeed) * 0.5 + 0.5;
-      this.displayText = this.path.commands.length;
+      this.displayText = this.shapeCount;
       this.animateStartIndex++;
       if (this.animateStartIndex > 111) {
         return this.state = 0;
@@ -94,22 +82,21 @@ Word = (function() {
   };
 
   Word.prototype.draw = function() {
-    var cmd, i, letterCount, pdata;
+    var cmd, i, letterCount;
     this.color = this.ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y);
     this.color.addColorStop("0", "#111");
     this.color.addColorStop(this.colorStop, "#fff");
     this.color.addColorStop("1.0", "#111");
     this.ctx.fillStyle = this.color;
-    pdata = this.path.commands;
     this.ctx.beginPath();
     i = 0;
     letterCount = 0;
-    while (i < pdata.length) {
+    while (i < this.path.length) {
       if (letterCount === this.displayText) {
-        i = pdata.length;
+        i = this.path.length;
         break;
       }
-      cmd = pdata[i];
+      cmd = this.path[i];
       if (cmd.type === 'M') {
         this.ctx.moveTo(cmd.x + this.x, cmd.y + this.y);
       } else if (cmd.type === 'L') {
