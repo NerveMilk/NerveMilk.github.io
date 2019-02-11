@@ -12,8 +12,8 @@ scale = 1;
 
 menuHeight = 32;
 
-Word = class Word {
-  constructor(ctx1, id, text1, link1, path1, width, x, y, scale1) {
+Word = (function() {
+  function Word(ctx1, id, text1, link1, path1, width, x, y, scale1) {
     var cmd, j, len, ref;
     this.ctx = ctx1;
     this.id = id;
@@ -27,7 +27,6 @@ Word = class Word {
     this.animateStartIndex = 0;
     this.animateSpeed = 1;
     this.colorStop = 1;
-    // -1:null 0:static 1:interactive 2:typewriter 3:lightshift
     this.state = 0;
     this.shapeCount = 0;
     ref = this.path;
@@ -40,9 +39,8 @@ Word = class Word {
     this.displayText = this.shapeCount;
   }
 
-  update() {
+  Word.prototype.update = function() {
     var r;
-    // mouse over
     if (curr && curr.id === this.id) {
       this.state = 1;
     } else {
@@ -62,16 +60,13 @@ Word = class Word {
         }
       }
     }
-    // static
     if (this.state === -1) {
       return this.displayText = 0;
     } else if (this.state === 0) {
       return this.displayText = this.shapeCount;
-    // interactive
     } else if (this.state === 1) {
       this.colorStop = max(min((mouseX - curr.x) / curr.width, 1), 0);
       return this.displayText = this.shapeCount;
-    // typewriter
     } else if (this.state === 2) {
       if (this.animateStartIndex < this.shapeCount) {
         this.animateStartIndex += this.animateSpeed;
@@ -79,7 +74,6 @@ Word = class Word {
       } else {
         return this.state = 0;
       }
-    // lightshift
     } else if (this.state === 3) {
       this.colorStop = cos(this.animateStartIndex * 0.11 * this.animateSpeed) * 0.5 + 0.5;
       this.displayText = this.shapeCount;
@@ -88,9 +82,9 @@ Word = class Word {
         return this.state = 0;
       }
     }
-  }
+  };
 
-  draw() {
+  Word.prototype.draw = function() {
     var cmd, i, letterCount;
     this.color = this.ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y);
     this.color.addColorStop("0", "#111");
@@ -121,13 +115,12 @@ Word = class Word {
       i += 1;
     }
     return this.ctx.fill();
-  }
+  };
 
-};
+  return Word;
 
-// stats = new Stats()
-// stats.showPanel(0)
-// document.body.appendChild stats.dom
+})();
+
 preload = function() {
   return shapes = loadJSON('../shapes.json');
 };
@@ -168,7 +161,6 @@ setup = function() {
       index = (index + 1) % stories.length;
     }
   }
-// setup initial typewriter animation
   results = [];
   for (j = 0, len = words.length; j < len; j++) {
     word = words[j];
@@ -180,9 +172,7 @@ setup = function() {
 
 draw = function() {
   var j, k, len, len1, results, word;
-  // stats.begin()
   background(0);
-  // find mouseover
   curr = null;
   for (j = 0, len = words.length; j < len; j++) {
     word = words[j];
@@ -200,7 +190,6 @@ draw = function() {
   return results;
 };
 
-// stats.end()
 windowResized = function() {
   return resizeCanvas(windowWidth, windowHeight);
 };
