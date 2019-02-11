@@ -103,6 +103,10 @@
   </url>
   
   <url>
+    <loc>https://NerveMilk.github.io/submit/</loc>
+  </url>
+  
+  <url>
     <loc>https://NerveMilk.github.io/tags/</loc>
     <priority>0</priority>
   </url>
