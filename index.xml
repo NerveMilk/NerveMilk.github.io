@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>NERVEMILK | 神经奶</title>
+    <title>神经奶</title>
     <link>https://NerveMilk.github.io/</link>
-    <description>Recent content on NERVEMILK | 神经奶</description>
+    <description>Recent content on 神经奶</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 06 Nov 2017 16:10:01 -0400</lastBuildDate>
@@ -294,7 +294,17 @@ ID在15秒内快速的回复：
     </item>
     
     <item>
-      <title>神经奶</title>
+      <title>新消息</title>
+      <link>https://NerveMilk.github.io/news/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://NerveMilk.github.io/news/</guid>
+      <description>Based in Shanghai, Simone is a designer of future products and stories. He works with companies and organizations such as Dubai&amp;rsquo;s Museum of the Future, BMW, and Google Creative Lab to speculate and prototype future experiences. His work has been exhibited in museums around the world such as Vitra Design Museum and MAK Vienna.
+Simone is interested in exploring stories from unexpected, mundane, and non-human perspectives. Recently, together with his collective automato.</description>
+    </item>
+    
+    <item>
+      <title>简单介绍</title>
       <link>https://NerveMilk.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
